@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HabitsTabBarController.swift
 //  MyHabits
 //
 //  Created by Сманчос on 02.03.2023.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HabitsTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        view.backgroundColor = .green
     }
-
-
 }
 
