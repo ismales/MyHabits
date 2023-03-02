@@ -30,4 +30,13 @@ enum Resources {
             static var info = UIImage(systemName: "info.circle.fill")
         }
     }
+
+    enum Metric {
+        static let topOffset: CGFloat = 22
+        static let sideOffset: CGFloat = 16
+        static let bottomOffset: CGFloat = 22
+
+        static let textSize: CGFloat = 17
+        static let titleSize: CGFloat = 24
+    }
 }

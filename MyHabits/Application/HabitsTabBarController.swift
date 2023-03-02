@@ -12,7 +12,7 @@ enum Tabs: Int {
     case info
 }
 
-class HabitsTabBarController: UITabBarController {
+final class HabitsTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

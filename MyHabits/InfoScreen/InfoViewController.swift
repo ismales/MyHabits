@@ -4,11 +4,18 @@
 //
 //  Created by Сманчос on 02.03.2023.
 //
-
+ 
 import UIKit
 
-class InfoViewController: UIViewController {
+final class InfoViewController: UIViewController {
 
+    private let infoView = InfoView()
+
+    override func loadView() {
+        super.loadView()
+
+        view = infoView
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,8 +23,7 @@ class InfoViewController: UIViewController {
     }
 
     private func configure() {
-        view.backgroundColor = Resources.Colors.background
-
         navigationItem.title = Resources.Strings.TabBar.info
+        infoView.setupTexts(info: info)
     }
 }
