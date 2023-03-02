@@ -9,21 +9,22 @@ import UIKit
 
 class HabitsViewController: UIViewController {
 
+    private lazy var navBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(tapAction))
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setup()
     }
-    
 
-    /*
-    // MARK: - Navigation
+    private func setup() {
+        view.backgroundColor = Resources.Colors.background
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        navigationItem.rightBarButtonItem = navBarButton
+        navBarButton.tintColor = Resources.Colors.active
     }
-    */
 
+    @objc private func tapAction() {
+
+    }
 }
