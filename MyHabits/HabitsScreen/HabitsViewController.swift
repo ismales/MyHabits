@@ -9,7 +9,14 @@ import UIKit
 
 final class HabitsViewController: UIViewController {
 
+    private let habitsView = HabitsView()
     private lazy var navBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(tapAction))
+
+    override func loadView() {
+        super.loadView()
+
+        view = habitsView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +26,8 @@ final class HabitsViewController: UIViewController {
 
     private func setup() {
         view.backgroundColor = Resources.Colors.background
+        navigationItem.title = Resources.Strings.NavigationBar.today
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         navigationItem.rightBarButtonItem = navBarButton
         navBarButton.tintColor = Resources.Colors.active
