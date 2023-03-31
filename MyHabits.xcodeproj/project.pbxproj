@@ -22,6 +22,9 @@
 		AD6B79E029B103BC008522FE /* UIViewController +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B79DF29B103BC008522FE /* UIViewController +ext.swift */; };
 		AD6B79E229B1F15C008522FE /* WillSucceedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B79E129B1F15B008522FE /* WillSucceedTableViewCell.swift */; };
 		AD6B79E429B1F16D008522FE /* HabitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B79E329B1F16D008522FE /* HabitsTableViewCell.swift */; };
+		AD6B79E629B329F1008522FE /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B79E529B329F1008522FE /* HabitViewController.swift */; };
+		AD6B79E829B5D768008522FE /* HabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B79E729B5D768008522FE /* HabitView.swift */; };
+		AD6B79EC29B62286008522FE /* UITextView +ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6B79EB29B62285008522FE /* UITextView +ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		AD6B79DF29B103BC008522FE /* UIViewController +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController +ext.swift"; sourceTree = "<group>"; };
 		AD6B79E129B1F15B008522FE /* WillSucceedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WillSucceedTableViewCell.swift; sourceTree = "<group>"; };
 		AD6B79E329B1F16D008522FE /* HabitsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsTableViewCell.swift; sourceTree = "<group>"; };
+		AD6B79E529B329F1008522FE /* HabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
+		AD6B79E729B5D768008522FE /* HabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitView.swift; sourceTree = "<group>"; };
+		AD6B79EB29B62285008522FE /* UITextView +ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView +ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,14 +80,10 @@
 		AD6B79AE29B0B04D008522FE /* MyHabits */ = {
 			isa = PBXGroup;
 			children = (
-				AD6B79C529B0BB2E008522FE /* HabitsStore.swift */,
-				AD6B79D729B0F04B008522FE /* Models */,
 				AD6B79C329B0B41D008522FE /* Application */,
-				AD6B79C829B0BBF3008522FE /* HabitsScreen */,
-				AD6B79C929B0BBFD008522FE /* InfoScreen */,
-				AD6B79D429B0EE21008522FE /* EditHabit */,
-				AD6B79D329B0EDE8008522FE /* DeleteHabit */,
-				AD6B79D229B0EDD5008522FE /* CreateHabit */,
+				AD6B79D729B0F04B008522FE /* Models */,
+				ADC9CAC529D6E8CF0052ED80 /* Views */,
+				ADC9CAC629D6E9600052ED80 /* Controllers */,
 				AD6B79DA29B0F53E008522FE /* Extensions */,
 				AD6B79C429B0B432008522FE /* Resources */,
 			);
@@ -92,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				AD6B79AF29B0B04D008522FE /* AppDelegate.swift */,
-				AD6B79B329B0B04D008522FE /* HabitsTabBarController.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -111,7 +112,6 @@
 		AD6B79C829B0BBF3008522FE /* HabitsScreen */ = {
 			isa = PBXGroup;
 			children = (
-				AD6B79CA29B0BCD1008522FE /* HabitsViewController.swift */,
 				AD6B79D529B0EEFA008522FE /* HabitsView.swift */,
 				AD6B79E129B1F15B008522FE /* WillSucceedTableViewCell.swift */,
 				AD6B79E329B1F16D008522FE /* HabitsTableViewCell.swift */,
@@ -122,7 +122,6 @@
 		AD6B79C929B0BBFD008522FE /* InfoScreen */ = {
 			isa = PBXGroup;
 			children = (
-				AD6B79CC29B0BCE7008522FE /* InfoViewController.swift */,
 				AD6B79D029B0DA16008522FE /* InfoView.swift */,
 			);
 			path = InfoScreen;
@@ -131,15 +130,16 @@
 		AD6B79D229B0EDD5008522FE /* CreateHabit */ = {
 			isa = PBXGroup;
 			children = (
+				AD6B79E729B5D768008522FE /* HabitView.swift */,
 			);
 			path = CreateHabit;
 			sourceTree = "<group>";
 		};
-		AD6B79D329B0EDE8008522FE /* DeleteHabit */ = {
+		AD6B79D329B0EDE8008522FE /* DetailsHabit */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = DeleteHabit;
+			path = DetailsHabit;
 			sourceTree = "<group>";
 		};
 		AD6B79D429B0EE21008522FE /* EditHabit */ = {
@@ -152,6 +152,7 @@
 		AD6B79D729B0F04B008522FE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AD6B79C529B0BB2E008522FE /* HabitsStore.swift */,
 				AD6B79D829B0F05A008522FE /* Info.swift */,
 			);
 			path = Models;
@@ -162,8 +163,32 @@
 			children = (
 				AD6B79DB29B0F562008522FE /* UIView +ext.swift */,
 				AD6B79DF29B103BC008522FE /* UIViewController +ext.swift */,
+				AD6B79EB29B62285008522FE /* UITextView +ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ADC9CAC529D6E8CF0052ED80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B79C829B0BBF3008522FE /* HabitsScreen */,
+				AD6B79C929B0BBFD008522FE /* InfoScreen */,
+				AD6B79D229B0EDD5008522FE /* CreateHabit */,
+				AD6B79D329B0EDE8008522FE /* DetailsHabit */,
+				AD6B79D429B0EE21008522FE /* EditHabit */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ADC9CAC629D6E9600052ED80 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD6B79B329B0B04D008522FE /* HabitsTabBarController.swift */,
+				AD6B79CA29B0BCD1008522FE /* HabitsViewController.swift */,
+				AD6B79CC29B0BCE7008522FE /* InfoViewController.swift */,
+				AD6B79E529B329F1008522FE /* HabitViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +270,9 @@
 				AD6B79E429B1F16D008522FE /* HabitsTableViewCell.swift in Sources */,
 				AD6B79B029B0B04D008522FE /* AppDelegate.swift in Sources */,
 				AD6B79CF29B0C22A008522FE /* Resources.swift in Sources */,
+				AD6B79E829B5D768008522FE /* HabitView.swift in Sources */,
+				AD6B79EC29B62286008522FE /* UITextView +ext.swift in Sources */,
+				AD6B79E629B329F1008522FE /* HabitViewController.swift in Sources */,
 				AD6B79CB29B0BCD1008522FE /* HabitsViewController.swift in Sources */,
 				AD6B79D929B0F05A008522FE /* Info.swift in Sources */,
 				AD6B79CD29B0BCE7008522FE /* InfoViewController.swift in Sources */,
@@ -394,7 +422,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -425,7 +453,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

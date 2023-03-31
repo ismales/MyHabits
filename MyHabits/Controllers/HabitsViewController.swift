@@ -34,6 +34,7 @@ final class HabitsViewController: UIViewController {
     }
 
     @objc private func tapAction() {
-
+        let createHabit = HabitViewController()
+        navigationController?.pushViewController(createHabit, animated: true)
     }
 }

@@ -11,31 +11,35 @@ final class InfoView: UIView {
 
     // MARK: - Properties
     private let scrollView: UIScrollView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.bounces  = false
-        return $0
-    }(UIScrollView())
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.bounces  = false
+        return view
+    }()
 
     private lazy var contentView: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .white
-        return $0
-    }(UIView())
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        return view
+    }()
 
     private lazy var titleLabel: UILabel = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = .systemFont(ofSize: Resources.Metric.titleSize, weight: .bold)
-        $0.textColor = .black
-        return $0
-    }(UILabel())
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: Resources.Metric.titleSize, weight: .bold)
+        label.textColor = .black
+        return label
+    }()
 
     private lazy var textLabel: UILabel = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = .systemFont(ofSize: Resources.Metric.textSize)
-        $0.textColor = .black
-        $0.numberOfLines = 0
-        return $0
-    }(UILabel())
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: Resources.Metric.textSize)
+        label.textColor = .black
+        label.numberOfLines = 0
+        return label
+    }()
 
     // MARK: - Init
     override init(frame: CGRect) {

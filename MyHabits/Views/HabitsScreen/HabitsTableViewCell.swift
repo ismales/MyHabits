@@ -7,9 +7,17 @@
 
 import UIKit
 
-class HabitsTableViewCell: UICollectionViewCell {
+protocol HabitsTableViewCellDelegate: AnyObject {
+    func checkboxButtonTapped(_ button: UIButton, indexPath: IndexPath)
+}
+
+final class HabitsTableViewCell: UICollectionViewCell {
 
     // MARK: - Propertie's
+    weak var delegate: HabitsTableViewCellDelegate?
+
+    private var indexPathCell = IndexPath()
+
     private let cellContentView: UIView = {
         let cellContentView = UIView()
         cellContentView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,46 +40,35 @@ class HabitsTableViewCell: UICollectionViewCell {
         let textLbl = UILabel()
         textLbl.translatesAutoresizingMaskIntoConstraints = false
         textLbl.font = UIFont.systemFont(ofSize: Resources.Metric.textSize, weight: .medium)
-        textLbl.textColor = .blue
-        textLbl.text = "Выпить стакан воды"
+        textLbl.numberOfLines = 2
         return textLbl
     }()
 
     private let habitTimeLbl: UILabel = {
         let habitTimeLbl = UILabel()
         habitTimeLbl.translatesAutoresizingMaskIntoConstraints = false
-        habitTimeLbl.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        habitTimeLbl.font = UIFont.systemFont(ofSize: Resources.Metric.footnoteSice, weight: .regular)
         habitTimeLbl.textColor = .systemGray2
-        habitTimeLbl.text = "Каждый день в 7:30"
         return habitTimeLbl
     }()
 
     private let counterlbl: UILabel = {
         let counterlbl = UILabel()
         counterlbl.translatesAutoresizingMaskIntoConstraints = false
-        counterlbl.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        counterlbl.font = UIFont.systemFont(ofSize: Resources.Metric.footnoteSice, weight: .regular)
         counterlbl.textColor = .systemGray
-        counterlbl.text = "Счетчик: 0"
         return counterlbl
     }()
 
-    private lazy var checkboxView: UIView = {
-        let checkboxView = UIView()
-        checkboxView.translatesAutoresizingMaskIntoConstraints = false
-        checkboxView.layer.borderWidth = 2
-        checkboxView.layer.borderColor = UIColor.blue.cgColor
-        checkboxView.layer.cornerRadius = 20
-        checkboxView.clipsToBounds = true
-        checkboxView.backgroundColor = .blue
-        return checkboxView
-    }()
-
-    private lazy var checkboxImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleToFill
-        image.image = UIImage(named: "check")
-        return image
+    private lazy var checkboxButton: UIButton = {
+        let checkboxButton = UIButton()
+        checkboxButton.translatesAutoresizingMaskIntoConstraints = false
+        checkboxButton.layer.borderWidth = Resources.Metric.Button.borderWidth
+        checkboxButton.layer.cornerRadius = Resources.Metric.Button.cornerRadius
+        checkboxButton.tintColor = .white
+        checkboxButton.clipsToBounds = true
+        checkboxButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        return checkboxButton
     }()
 
     // MARK: - Init
@@ -92,25 +89,29 @@ class HabitsTableViewCell: UICollectionViewCell {
         textLbl.text = ""
         habitTimeLbl.text = ""
         counterlbl.text = ""
-        checkboxImage.image = nil
+        checkboxButton.setImage(nil, for: .normal)
     }
 
-//    func setupCell(habit: HabitsStore) {
-//        ppAuthorLabel.text = post.author
-//        ppImageView.image = post.image                    надо будет заполнить, чтобы поля автомастически подставлялись в значения!
-//        ppDescriptionLabel.text = post.description
-//        ppLikesView.text = "Likes: \(post.likes)"
-//        ppViews.text = "Views: \(post.views)"
-//    }
+    func setupCell(habit: Habit) {
+        textLbl.text = habit.name
+        textLbl.textColor = habit.color
+        habitTimeLbl.text = "Каждый день в \(habit.date)"
+        counterlbl.text = "Счетчик: \(HabitsStore.shared.habits.count)"
+        checkboxButton.layer.borderColor = habit.color.cgColor
+        checkboxButton.setImage(.init(systemName: "checkmark"), for: .normal)
+    }
+
+    func setIndexPath(_ indexPath: IndexPath) {
+        indexPathCell = indexPath
+    }
 
     private func layout() {
         contentView.addSubview(cellContentView)
         cellContentView.addSubview(stackView)
-        cellContentView.addSubview(checkboxView)
+        cellContentView.addSubview(checkboxButton)
         stackView.addArrangedSubview(textLbl)
         stackView.addArrangedSubview(habitTimeLbl)
         stackView.addArrangedSubview(counterlbl)
-        checkboxView.addSubview(checkboxImage)
 
         NSLayoutConstraint.activate([
             cellContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -120,7 +121,7 @@ class HabitsTableViewCell: UICollectionViewCell {
 
             stackView.topAnchor.constraint(equalTo: cellContentView.topAnchor, constant: Resources.Metric.sideOffset),
             stackView.leadingAnchor.constraint(equalTo: cellContentView.leadingAnchor, constant: Resources.Metric.sideOffset),
-            stackView.trailingAnchor.constraint(equalTo: checkboxView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: checkboxButton.leadingAnchor),
             stackView.bottomAnchor.constraint(equalTo: cellContentView.bottomAnchor, constant: -Resources.Metric.sideOffset),
 
             textLbl.topAnchor.constraint(equalTo: stackView.topAnchor),
@@ -136,15 +137,14 @@ class HabitsTableViewCell: UICollectionViewCell {
             counterlbl.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             counterlbl.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
 
-            checkboxView.centerYAnchor.constraint(equalTo: stackView.centerYAnchor),
-            checkboxView.trailingAnchor.constraint(equalTo: cellContentView.trailingAnchor, constant: -Resources.Metric.sideOffset * 2),
-            checkboxView.heightAnchor.constraint(equalToConstant: 40),
-            checkboxView.widthAnchor.constraint(equalToConstant: 40),
-
-            checkboxImage.centerXAnchor.constraint(equalTo: checkboxView.centerXAnchor),
-            checkboxImage.centerYAnchor.constraint(equalTo: checkboxView.centerYAnchor),
-            checkboxImage.heightAnchor.constraint(equalToConstant: 15),
-            checkboxImage.widthAnchor.constraint(equalToConstant: 15)
+            checkboxButton.centerYAnchor.constraint(equalTo: stackView.centerYAnchor),
+            checkboxButton.trailingAnchor.constraint(equalTo: cellContentView.trailingAnchor, constant: -Resources.Metric.sideOffset * 2),
+            checkboxButton.heightAnchor.constraint(equalToConstant: Resources.Metric.Button.side),
+            checkboxButton.widthAnchor.constraint(equalToConstant: Resources.Metric.Button.side),
         ])
+    }
+
+    @objc func buttonTapped() {
+        delegate?.checkboxButtonTapped(checkboxButton, indexPath: indexPathCell)
     }
 }

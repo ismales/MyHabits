@@ -42,7 +42,7 @@ final class WillSucceedTableViewCell: UICollectionViewCell {
         progressLbl.translatesAutoresizingMaskIntoConstraints = false
         progressLbl.font = UIFont.systemFont(ofSize: Resources.Metric.textSize, weight: .regular)
         progressLbl.textColor = .systemGray
-        progressLbl.text = "50%"    // поменять это поле
+        progressLbl.text = "0%"    // поменять это поле
         return progressLbl
     }()
 
@@ -54,7 +54,7 @@ final class WillSucceedTableViewCell: UICollectionViewCell {
         progressBar.layer.masksToBounds = true
         progressBar.trackTintColor = .systemGray5
         progressBar.progressTintColor = Resources.Colors.active
-        progressBar.setProgress(0.5, animated: true) // менять значение в зависимости от выполненных привычек
+//        progressBar.setProgress(0.5, animated: true) // менять значение в зависимости от выполненных привычек
         return progressBar
     }()
 
@@ -70,6 +70,11 @@ final class WillSucceedTableViewCell: UICollectionViewCell {
     }
 
     // MARK: - Method's
+    //    func setupCell(habit: HabitsStore) {
+    //        progressLbl.text = "\(progress.percent)%"
+    //        progressBar.setProgress = progress.percent / 100             надо будет заполнить, чтобы поля автомастически подставлялись
+    //    }
+
     private func layout() {
         contentView.addSubview(cellContentView)
         cellContentView.addSubview(stackView)

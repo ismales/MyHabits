@@ -42,5 +42,12 @@ enum Resources {
 
         static let textSize: CGFloat = 17
         static let titleSize: CGFloat = 24
+        static let footnoteSice: CGFloat = 12
+
+        enum Button {
+            static let borderWidth: CGFloat = 2
+            static let side: CGFloat = 45
+            static let cornerRadius: CGFloat = side / 2
+        }
     }
 }
